@@ -1,0 +1,480 @@
+13.233.79.106
+==========================
+https://www.devopsschool.com/tutorial/docker/commands/index.html
+
+cp
+============
+ 252  ls
+  253  vi devopsschool.txt
+  254  more devopsschool.txt
+  255  ls
+  256  docker ps
+  257  docker cp devopsschool.txt fb05b692cf3f:/opt
+  258  docker exec fb05b692cf3f ls /opt
+  259  docker exec fb05b692cf3f more /opt/devopsschool.txt
+  260  ls
+  261  rm -rf devopsschool.txt
+  262  ls
+  263  docker cp fb05b692cf3f:/opt/devopsschool.txt .
+  264  ls
+  265  more devopsschool.txt
+  266  clear
+
+diff
+==============
+		files got 
+				Added
+				Changed
+				Deleted 
+				After a Containers got created
+
+
+  274  clear
+  275  docker ps
+  276  docker diff fb05b692cf3f
+  277  docker port fb05b692cf3f
+  278  docker run -p 8080:8080 -d jenkins
+  279  docker ps
+  280  docker port 0b92f0b9c114
+  281  clear
+  282  docker ps
+  283  docker renmae fb05b692cf3f dev2
+  284  docker rename fb05b692cf3f dev2
+  285  docker ps
+  286  docker run -itd --name dev1 ubuntu
+  287  docker ps
+
+
+Containers Troubleshooting
+
+Assignment
+===========================
+update
+wait
+
+ 289  clear
+  290  docker ps
+  291  docker logs 31fb4bb7f107
+  292  docker logs 0b92f0b9c114
+  293  clear
+  294  docker ps
+  295  docker logs 31fb4bb7f107
+  296  dockers stats
+  297  docker stats
+  298  docker stats 31fb4bb7f107
+  299  docker ps
+  300  ps -eaf | grep docker
+  301  docker run -p 8090:8080 -d jenkins
+  302  clear
+  303  ps -eaf | grep docker
+  304  docker ps
+  305  docker top f5cb5b7ac188
+  306  ps -eaf | grep 2290
+  307  clear
+  308  docker ps
+  309  ps -eaf | grep jenkins.sh
+  310  docker ps
+  311  docker exec f5cb5b7ac188 ps -eaf
+  312  clear
+  313  docker version
+  314  clear
+  315  ps -eaf | grep docker
+  316  history
+
+
+  316  history
+  317  clear
+  318  ls
+  319  docker events
+  320  history
+
+========================================================
+
+Docker Volume
+===================================
+Lets understand data persistency issues with containers?
+-------------------------------------------------------
+Docker Volume TYPE
+		Volume		/var/lib/docker/volumes
+		mountfs		AnyWhere
+		tempfs		in Memory
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+
+ 276  docker volume create dev
+  277  docker volume create qa
+  278  clear
+  279  ls
+  280  clear
+  281  docker volume ls
+  282  clear
+  283  ls
+  284  clear
+  285  docker run -itd -v dev:/opt/raju ubuntu
+  286  docker ls
+  287  docker ls
+  288  docker ps
+  289  docker exec e3d048f8fd04 df -kh
+  290  ls
+  291  clear
+  292  ls
+  293  docker exec e3d048f8fd04 touch /opt/raju/dddd
+  294  ls
+  295  clear
+  296  cd dev/
+  297  ls
+  298  cd _data/
+  299  ls
+  300  touch fsdfsfsdf
+  301  docker exec e3d048f8fd04 ls /opt/raju
+  302  docker ps
+  303  clear
+  304  docker ps
+  305  docker stop e3d048f8fd04
+  306  docker rm e3d048f8fd04
+  307  clear
+  308  ls
+  309  docker volume ls
+
+
+  312  ls
+  313  docker volume ls
+  314  docker run -itd -v dev:/opt/one -v qa:/opt/second ubuntu
+  315  docker ps
+  316  clear
+  317  docker exec 4dd93c11f958 ls /opt/
+  318  docker run -itd -v dev:/opt/one -v qa:/opt/second ubuntu
+  319  docker ps
+  320  docker exec f88c66076730 ls .opt
+  321  docker exec f88c66076730 ls /opt
+  322   clear
+
+328  docker run -itd -v /opt/kaka:/opt/kaku ubuntu
+  329  docker ps
+  330  docker exec c77f89bdf9df ls /opt/
+  333  clear
+  334  cd /opt/
+  335  ls
+  336  cd kaka/
+  337  ls
+  338  touch sdasdfs
+  339  ls
+  340  docker ps
+  341  docker exec c77f89bdf9df ls /opt/kaku
+  342  clear
+
+
+ 344  history
+  345  clear
+  346  ls
+  347  dcoker volume -h
+  348  docker volume -h
+  349  docker volume prune
+  350  clear
+  351  ls
+  352  ls
+  353  docker volume ls
+  
+  
+  
+  Working with Docker Image
+================================
+
+  357  docker stop c77f89bdf9df f88c66076730 4dd93c11f958 6dda62163e15 f5cb5b7ac188 31fb4bb7f107 0b92f0b9c114 fb05b692cf3f
+  358  docker rm c77f89bdf9df f88c66076730 4dd93c11f958 6dda62163e15 f5cb5b7ac188 31fb4bb7f107 0b92f0b9c114 fb05b692cf3f
+  359  clear
+  360  docker ps -a
+  361  docker images
+  362  docker rmi ubuntu jenkins
+  363  cls
+  364  clear
+  365  docker images
+  366  docker info
+  367  clear
+  368  cd /var/lib/docker/
+  369  ls
+  370  cd overlay2
+  371  ls
+  372  du -sh .
+  373  docker images
+  374  docker pull ubuntu
+  375  clear
+  376  docker images
+  377  ls
+  378  pwd
+  379  docker inspect ubuntu
+  380  clear
+  381  ls
+  382  docker inspect ubuntu
+  383  ls
+  384  clear
+  385  ls
+  386  docker history ubuntu
+  387  docker images
+  388  ls
+  389  clear
+  390  ls
+  391  du -h --max-depth=1
+  392  cd ./df5fc7de279f6a97b94f3b67117c250f46e52bec3c1e5a771c329e00e5018386
+  393  clear
+  394  ls
+  395  cd diff
+  396  ls
+  397  cd ..
+  398  ls
+  399  cd ..
+  400  ls
+  401  du -h --max-depth=1
+  402  cd ./6e3fd1dfdd6dac6877b9c6382e1be428600d1957602d02786daae370acbc954d
+  403  clear
+  404  ls
+  405  cd diff/
+  406  ls
+  407  cd var/
+  408  ls
+  409  cd cache/
+  410  la
+  411  ls
+  412  cd apt/
+  413  las
+  414  clear
+  415  ls
+  416  ls -la
+  417  pwd
+  418  cd /var/lib/docker/overlay2
+  419  clear
+  420  ls
+
+
+
+ 421  history
+  422  clear
+  423  ls
+  424  docker run -itd ubuntu
+  425  ls
+  426  du -sh fdd3f28549f8a7025422bc6ef5d4978ff92e61bbb3328647eab213208a6791f1-init
+  427  du -sh fdd3f28549f8a7025422bc6ef5d4978ff92e61bbb3328647eab213208a6791f1
+  428  df -kh
+  429  cd fdd3f28549f8a7025422bc6ef5d4978ff92e61bbb3328647eab213208a6791f1
+  430  clear
+  431  ls
+  432  df -kh
+  433  docker ps
+  434  docker inspect acc97f125c38
+  435  clear
+  436  ls
+  437  docker ps
+  438  docker exec acc97f125c38 touch /opt/devops.txt
+  439  find . -name devops.txt
+  440  docker ps
+  441  docker stop acc97f125c38
+  442  find . -name devops.txt
+  443  ls
+  444  docker start acc97f125c38
+  445  ls
+
+
+
+================================================================
+2 Method - using we can create an Image.
+========================================
+1 - Using Existing Container - Manual way
+= One image
+		Which has Flavour OF linux - Ubuntu
+		jdk
+		apache
+		git
+		copy some files
+		-------------
+		create a image
+
+
+
+ 459  docker run -it ubuntu
+  460  clear
+  461  docker ps
+  462  docker exec 3fe9ba0e7a47 git
+  463  clear
+  464  git
+  465  java
+  466  docker exec 3fe9ba0e7a47 java
+  467  clear
+  468  ls
+  469  ls
+  470  vi index.html
+  471  docker cp index.html 3fe9ba0e7a47:/opt
+  472  clear
+  473  ls
+  474  docker ps
+  475  docker commit -m"ub-up-git-ap" -a"Rajesh Kumar" 3fe9ba0e7a47 ub-up-git-ap
+  476  docker images
+  477  docker run -itd --name mine ub-up-git-ap
+  478  docker ps
+  479  docker exec 5b8173ba2714 git
+  480  clear
+  481  ls
+  482  docker exec 5b8173ba2714 java
+  483  cleare
+  484  clear
+  485  docker images
+  486  docker history ub-up-git-ap
+  487  docker inspect ub-up-git-ap
+
+
+Inside a container
+-------------------------'
+   1  java
+    2  git
+    3  which apache
+    4  which apache2
+    5  apt-get install openjdk-8-jdk package
+    6  apt-get update
+    7  clear
+    8  apt-get install openjdk-8-jdk package
+    9  apt-get install openjdk-7-jre
+   10  apt-get install openjdk-8-jdk
+   11  clear
+   12  java
+   13  clear
+   14  apt-get install apache2
+   15  which apache2
+   16  apt-get install git -y
+   17  git
+   18  history
+=============================================
+How can we share an Images?
+========================================
+- using TAR Ball
+
+  496  docker images
+  497  ls
+  498  docker save -o ub-up-git-ap.tar ub-up-git-ap
+  499  lsd
+  500  ls
+  501  du -sh ub-up-git-ap.tar
+  502  docker images
+  503  docker ps
+  504  docker stop 5b8173ba2714 3fe9ba0e7a47 acc97f125c38
+  505  docker rm 5b8173ba2714 3fe9ba0e7a47 acc97f125c38
+  506  clear
+  507  docker ps -a
+  508  docker images
+  509  docker rmi ub-up-git-ap
+  510  docker images
+  511  ls
+  512  docker load -i ub-up-git-ap.tar
+  513  docker images
+  514  docker run -itd ub-up-git-ap
+  515  docker ps
+
+
+
+- using Registry
+	hub.docker.com	
+	Step 1 - Register your account
+	Step 2 - Login to hub
+	Step 3 - Create a public repo
+	Step 4 - Login to hub using putty
+	Step 5 - Image Repo name in Local and HUb MUST match
+	Step 6 - push an image.
+
+
+	google registry
+	artifactory
+	nexus
+
+ 518  docker images
+  519  docker login
+  520  docker login
+  521  clear
+  522  docker images
+  523  docker tag ub-up-git-ap devopsschools/vertuesday2020
+  524  docker images
+  525  docker tag ub-up-git-ap devopsschools/vertuesday2020:v1
+  526  docker images
+  527  docker push devopsschools/vertuesday2020
+  528  clear
+  529  docker push devopsschools/vertuesday2020
+
+docker login http://10.6.7.7:8081/jenkins
+docker push http://10.6.7.7:8081/jenkins
+docker pull http://10.6.7.7:8081/jenkins
+
+
+2. Using Dockerile - Automated
+=============================================
+Rules to understand dockerfile
+------------------------------
+- Everyline is dockerfile create ONE LAYER
+- Every line is child of previous line
+
+FROM ubuntu
+MAINTAINER rajesh kumar devops@rajeshkumar.xyz
+RUN apt-get update
+RUN apt-get install git -y
+COPY index.html /opt/
+ENV APP_HOME /opt/xyz/mnp
+
+
+FROM ubuntu
+MAINTAINER rajesh kumar devops@rajeshkumar.xyz
+RUN touch /opt/file1.txt
+RUN touch /opt/file2.txt
+RUN touch /opt/file3.txt
+
+ 542  vi dockerfile
+  543  touch index.html
+  544  docker build -t ima1 .
+  545  docker images
+  546  docker history ima1
+  547  clear
+  548  ls
+  549  vi doc2
+  550  ls
+  551  docker build -t img2 -f doc2 .
+
+
+You need to find out.
+	Which port jenkins got exposed
+	How volumes got created in jenkins container
+	Which user jenkins is running with?
+	What are the env set for Jenkins container?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sharing an Image
+© 2020 GitHub, Inc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Working with Docker Image
+
+Sharing an Image
